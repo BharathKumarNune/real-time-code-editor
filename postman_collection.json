@@ -1,0 +1,106 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Real-time Code Editor API",
+      "version": "1.0.0",
+      "description": "API documentation for the real-time collaborative code editor with AI-assisted debugging."
+    },
+    "servers": [
+      {"url": "http://localhost:8000"}
+    ],
+    "paths": {
+      "/": {
+        "get": {
+          "summary": "Root Endpoint",
+          "operationId": "root",
+          "responses": {
+            "200": {
+              "description": "API is running",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": {"type": "string"}
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/auth/signup": {
+        "post": {
+          "summary": "User Signup",
+          "operationId": "signup",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "username": {"type": "string"},
+                    "password": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {"description": "User created successfully"},
+            "400": {"description": "Username already exists"}
+          }
+        }
+      },
+      "/auth/token": {
+        "post": {
+          "summary": "User Login",
+          "operationId": "login",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/x-www-form-urlencoded": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "username": {"type": "string"},
+                    "password": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {"description": "Access token returned"},
+            "401": {"description": "Invalid credentials"}
+          }
+        }
+      },
+      "/editor/debug": {
+        "post": {
+          "summary": "AI Code Debugging",
+          "operationId": "debug_code",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {"type": "string"}
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {"description": "AI debugging suggestions returned"},
+            "400": {"description": "Invalid input"}
+          }
+        }
+      }
+    }
+  }
+  

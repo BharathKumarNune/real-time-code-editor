@@ -96,7 +96,3 @@ pytest tests/
 
 ## Contributors
 - **Your Name** - Bharath Kumar Nune
-
-## License
-This project is licensed under the MIT License.
-
